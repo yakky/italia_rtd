@@ -1,0 +1,16 @@
+{% extends TEMPLATE_ROOT|add:"doc_builder/conf.py.tmpl" %}
+
+{% block extra_context %}
+context['subproject_data'] = [
+    {% for subproject in subprojects %}
+    {
+        'id': {{ subproject.id }},
+        'name': '{{ subproject.name }}',
+        'slug': '{{ subproject.slug }}',
+        'url': '{{ subproject.canonical_url }}',
+        'description': '{{ subproject.description }}',
+        'version': '{{ subproject.default_version }}',
+    },
+    {% endfor %}
+]
+{% endblock %}
