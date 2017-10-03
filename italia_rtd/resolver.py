@@ -41,4 +41,4 @@ class ItaliaResolver(ResolverBase):
 
     def resolve(self, *args, **kwargs):
         kwargs['protocol'] = 'https'
-        super(ItaliaResolver, self).resolve(*args, **kwargs)
+        return super(ItaliaResolver, self).resolve(*args, **kwargs)
