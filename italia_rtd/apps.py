@@ -6,4 +6,4 @@ class ItaliaConfig(AppConfig):
     verbose_name = 'Italia'
 
     def ready(self):
-        from italia_rtd.signals import *
+        from italia_rtd.signals import add_sphinx_context_data  # NOQA
