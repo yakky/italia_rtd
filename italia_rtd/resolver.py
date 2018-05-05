@@ -40,5 +40,5 @@ class ItaliaResolver(ResolverBase):
         return getattr(settings, 'PUBLIC_DOMAIN')
 
     def resolve(self, *args, **kwargs):
-        kwargs['protocol'] = 'https'
+        kwargs['protocol'] = getattr(settings, 'PUBLIC_PROTO', 'https')
         return super(ItaliaResolver, self).resolve(*args, **kwargs)
