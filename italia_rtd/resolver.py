@@ -16,7 +16,9 @@ class ItaliaResolver(ResolverBase):
     def base_resolve_path(self, project_slug, filename, version_slug=None,
                           language=None, private=False, single_version=None,
                           subproject_slug=None, subdomain=None, cname=None):
-        url = u'/{project_slug}/'
+
+        from readthedocs.projects.models import Project
+        url = u'/{publisher_slug}/{base_project_slug}/{project_slug}/'
 
         if subproject_slug:
             url += u'projects/{subproject_slug}/'
@@ -26,8 +28,11 @@ class ItaliaResolver(ResolverBase):
         else:
             url += u'{language}/{version_slug}/{filename}'
 
+        project = Project.objects.get(slug=project_slug)
+        base_project = project.publisherproject_set.all().first()
         return url.format(
             project_slug=project_slug, filename=filename,
+            base_project_slug=base_project.slug, publisher_slug=base_project.publisher.slug,
             version_slug=version_slug, language=language,
             single_version=single_version, subproject_slug=subproject_slug,
         )
