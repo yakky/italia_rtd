@@ -13,4 +13,7 @@ context['subproject_data'] = [
     },
     {% endfor %}
 ]
+with open('settings.rst') as rtd:
+    data = rtd.read()
+context['pippo'] = data
 {% endblock %}
