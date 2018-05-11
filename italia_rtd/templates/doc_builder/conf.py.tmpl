@@ -13,4 +13,11 @@ context['subproject_data'] = [
     },
     {% endfor %}
 ]
+with open('projects_settings.yml') as rtd:
+    data = rtd.read()
+try:
+    data = yaml.safe_load(data)
+except yaml.YAMLError as exc:
+    data = {}
+context['extra_data'] = data
 {% endblock %}
